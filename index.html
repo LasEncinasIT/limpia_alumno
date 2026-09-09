@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Limpieza de Maqueta DAM — Las Encinas IT</title>
+  <meta name="description" content="Descarga del paquete de scripts de limpieza de la maqueta DAM para Windows">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-hover: #0ea5e9;
+      --accent-rgb: 56, 189, 248;
+      --success: #34d399;
+      --code-bg: #0b1120;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      color: var(--accent);
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      margin-bottom: 0.75rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    }
+
+    .download-section {
+      text-align: center;
+      padding: 2.5rem 2rem;
+      background: linear-gradient(180deg, rgba(30, 41, 59, 1) 0%, rgba(15, 23, 42, 0.7) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: var(--accent);
+      color: #0f172a;
+      font-size: 1.15rem;
+      font-weight: 600;
+      padding: 0.9rem 2rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn-download:hover {
+      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(56, 189, 248, 0.5);
+    }
+
+    .file-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.25rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .file-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .file-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .file-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1rem;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid var(--card-border);
+      border-radius: 0.5rem;
+    }
+
+    .file-name {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--accent);
+    }
+
+    .file-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .step-number {
+      width: 2rem;
+      height: 2rem;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .step-body {
+      flex: 1;
+    }
+
+    .step-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .step-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    pre {
+      background: var(--code-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.5rem;
+      padding: 0.75rem 1rem;
+      overflow-x: auto;
+      margin-top: 0.5rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-copy {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      transition: all 0.15s;
+    }
+
+    .btn-copy:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--text-main);
+    }
+
+    .checksum-box {
+      background: var(--code-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 0.5rem;
+      padding: 0.85rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      word-break: break-all;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: auto;
+      padding-top: 2rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Mantenimiento Las Encinas IT
+      </div>
+      <h1>Limpieza de Maqueta DAM</h1>
+      <p class="subtitle">Herramienta automatizada para la purga de rastros de usuario alumno y restablecimiento de entorno en maquetas Windows.</p>
+    </header>
+
+    <div class="download-section">
+      <a href="limpia_alumno.zip" class="btn-download" download>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Descargar limpia_alumno.zip
+      </a>
+      <div class="file-meta">
+        <span><strong>Versión:</strong> 09/09/2026</span>
+        <span>•</span>
+        <span><strong>Tamaño:</strong> ~38 KB</span>
+        <span>•</span>
+        <span><strong>Formato:</strong> ZIP</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        Contenido del paquete
+      </h2>
+      <ul class="file-list">
+        <li class="file-item">
+          <div>
+            <div class="file-name">Iniciar-Limpieza-Administrador.cmd</div>
+            <div class="file-desc">Lanzador por lotes que solicita elevación UAC y arranca PowerShell de 64 bits.</div>
+          </div>
+        </li>
+        <li class="file-item">
+          <div>
+            <div class="file-name">Limpiar-RastrosAlumno.ps1</div>
+            <div class="file-desc">Script principal de PowerShell que ejecuta la purga y regeneración de perfiles.</div>
+          </div>
+        </li>
+        <li class="file-item">
+          <div>
+            <div class="file-name">LEEME-LimpiezaDAM.md</div>
+            <div class="file-desc">Manual completo con parámetros, auditorías, simulaciones y precauciones.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+        Instrucciones de uso rápido
+      </h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-body">
+            <div class="step-title">Descomprimir en carpeta segura</div>
+            <div class="step-desc">Extrae el contenido en una ruta fuera del perfil del alumno (ejemplo: <code>C:\Mantenimiento\</code>).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-body">
+            <div class="step-title">Preparar el equipo</div>
+            <div class="step-desc">Cierra la sesión del usuario <code>alumno</code>, apaga máquinas virtuales y cierra VirtualBox/VMware. Inicia sesión con una cuenta administradora.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-body">
+            <div class="step-title">Ejecución automática</div>
+            <div class="step-desc">Haz clic derecho en <code>Iniciar-Limpieza-Administrador.cmd</code> y selecciona <strong>«Ejecutar como administrador»</strong> (o doble clic y confirma la solicitud UAC).</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <div class="step-body">
+            <div class="step-title">Opción manual / Simulación (PowerShell 5.1 x64)</div>
+            <div class="step-desc">Para probar en modo simulación sin aplicar cambios destructivos:</div>
+            <pre><code>.\Limpiar-RastrosAlumno.ps1 -WhatIf</code><button class="btn-copy" onclick="copyCode(this, '.\\Limpiar-RastrosAlumno.ps1 -WhatIf')">Copiar</button></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        Verificación de integridad (SHA-256)
+      </h2>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.75rem;">
+        Puedes comprobar la integridad de <code>limpia_alumno.zip</code> ejecutando en PowerShell: <code>Get-FileHash .\limpia_alumno.zip</code>
+      </p>
+      <div class="checksum-box">
+        <span>4fec63e7e08528b0fcf35eb7eb2ef56e9b47dfa9c59851b55d1948046cedce78</span>
+        <button class="btn-copy" onclick="copyCode(this, '4fec63e7e08528b0fcf35eb7eb2ef56e9b47dfa9c59851b55d1948046cedce78')">Copiar</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>Repositorio GitHub: <a href="https://github.com/LasEncinasIT/limpia_alumno" target="_blank" rel="noopener">LasEncinasIT/limpia_alumno</a></p>
+      <p style="margin-top: 0.25rem;">Las Encinas IT &copy; 2026</p>
+    </footer>
+  </div>
+
+  <script>
+    function copyCode(btn, text) {
+      navigator.clipboard.writeText(text).then(() => {
+        const original = btn.textContent;
+        btn.textContent = '¡Copiado!';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
